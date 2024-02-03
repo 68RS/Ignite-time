@@ -21,12 +21,12 @@ export function cyclesReducer(state: CyclesState, action: any) {
       // draft(rascunho)
       return produce(state, (draft) => {
         draft.cycles.push(action.payload.newCycle)
-        draft.activeCycleid = action.payload.newCycle.id
+        draft.activeCycleId = action.payload.newCycle.id
       })
 
     case ActionTypes.INTERRUPT_CURRENT_CYCLE: {
       const currentCycleIndex = state.cycles.findIndex((cycle) => {
-        return cycle.id === state.activeCycleid
+        return cycle.id === state.activeCycleId
       })
 
       if (currentCycleIndex < 0) {
@@ -40,7 +40,7 @@ export function cyclesReducer(state: CyclesState, action: any) {
     }
     case ActionTypes.MARK_CURRENT_CYCLE_AS_FINISHED: {
       const currentCycleIndex = state.cycles.findIndex((cycle) => {
-        return cycle.id === state.activeCycleid
+        return cycle.id === state.activeCycleId
       })
 
       if (currentCycleIndex < 0) {
@@ -48,7 +48,7 @@ export function cyclesReducer(state: CyclesState, action: any) {
       }
 
       return produce(state, (draft) => {
-        draft.activeCycleid = null
+        draft.activeCycleId = null
         draft.cycles[currentCycleIndex].finishedDate = new Date()
       })
     }
