@@ -12,7 +12,7 @@ export interface Cycle {
 
 interface CyclesState {
   cycles: Cycle[]
-  activeCycleid: string | null
+  activeCycleId: string | null
 }
 
 export function cyclesReducer(state: CyclesState, action: any) {
